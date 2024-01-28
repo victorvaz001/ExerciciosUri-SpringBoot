@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.devsuperior.uri2609.dto.CategorySumDTO;
 import com.devsuperior.uri2609.entities.Category;
 import com.devsuperior.uri2609.projections.CategorySumProjection;
-import com.fasterxml.jackson.annotation.JacksonInject.Value;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 	
@@ -16,4 +16,10 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 			+ "INNER JOIN products ON products.id_categories = categories.id "
 			+ "GROUP BY categories.name")
 	List<CategorySumProjection> search1();
+	
+	/*Relacionamento para (um), e possivel navegar pelo objeto*/
+	@Query("SELECT new com.devsuperior.uri2609.dto.CategorySumDTO(obj.category.name, SUM(obj.amount)) "
+			+ "FROM Product obj " 
+			+ "GROUP BY obj.category.name")
+	List<CategorySumDTO> search2();
 }
