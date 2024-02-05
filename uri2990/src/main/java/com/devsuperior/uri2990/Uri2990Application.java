@@ -28,11 +28,28 @@ public class Uri2990Application implements CommandLineRunner {
 		List<EmpregadoDeptProjection> list1 = repository.seartch1();
 		List<EmpregadoDeptDTO> result1 = list1.stream().map(x -> new EmpregadoDeptDTO(x)).collect(Collectors.toList());
 		
-		System.out.println("\n*** RESULTADO SQL RAIZ:");
+		System.out.println("\n*** RESULTADO SQL RAIZ NOT IN:");
 		for (EmpregadoDeptDTO obj : result1) {
 			System.out.println(obj);
 		}
 		System.out.println("\n\n");
+		
+		List<EmpregadoDeptDTO> result2 = repository.seartch2();
+		
+		
+		System.out.println("\n*** RESULTADO JPQL:");
+		for (EmpregadoDeptDTO obj : result2) {
+			System.out.println(obj);
+		}
+		System.out.println("\n\n");
+		
+		List<EmpregadoDeptProjection> list3 = repository.seartch3();
+		List<EmpregadoDeptDTO> result3 = list3.stream().map(x -> new EmpregadoDeptDTO(x)).collect(Collectors.toList());
+		
+		System.out.println("\n*** RESULTADO SQL RAIZ COM LEFT JOIN:");
+		for (EmpregadoDeptDTO obj : result3) {
+			System.out.println(obj);
+		}
 				
 	}
 }
