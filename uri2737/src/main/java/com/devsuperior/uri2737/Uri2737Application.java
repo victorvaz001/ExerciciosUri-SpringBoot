@@ -33,6 +33,6 @@ public class Uri2737Application implements CommandLineRunner {
 			System.out.println(obj);
 		}
 		System.out.println("\n\n");
-
+	
 	}
 }
